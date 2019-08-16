@@ -29,6 +29,19 @@ __Step 4:__
 
 <br>
 
+### Table of Content
+
+- [Objective](#objective)
+- [Project Approach](#project-approach)
+- [Setting up R Studio and Data Variables](#setting-up-r-studio-and-data-variables)
+- [Descriptive Statistics and Data Preparation](#Descriptive-Statistics-and-Data-Preparation)
+- [CART Machine Learning Technique](#CART-Machine-Learning-Technique)
+- [Random Forest Machine Learning Technique](#Random-Forest-Machine-Learning-Technique)
+- [Neural Networks Machine Learning Technique](#Neural-Networks-Machine-Learning-Technique)
+- [Conclusion](#Conclusion)
+
+<br>
+
 ### Objective
 
 Apply supervised machine learning techniques on MyBank personal loan campaign data set. And develop machine learning algorithm models to predict the potential list of bank customers who requires Personal Loan.
