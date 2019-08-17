@@ -239,23 +239,23 @@ R Studio codes for Histogram are attached in annexure A.
 	> library(ggplot2)
 ```
 
-<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209117-8bb89e80-c0fa-11e9-949c-d6f32018edd1.png>
+<p align="center"><img width=70% src=https://user-images.githubusercontent.com/44467789/63209117-8bb89e80-c0fa-11e9-949c-d6f32018edd1.png>
 		       
 <br>
 
-<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209127-9f640500-c0fa-11e9-8240-8d254134e292.png>
+<p align="center"><img width=70% src=https://user-images.githubusercontent.com/44467789/63209127-9f640500-c0fa-11e9-8240-8d254134e292.png>
 		       
 <br>
 
-<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209135-bc003d00-c0fa-11e9-8826-abba2975fe16.png>
+<p align="center"><img width=70% src=https://user-images.githubusercontent.com/44467789/63209135-bc003d00-c0fa-11e9-8826-abba2975fe16.png>
 
 <br>
 
-<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209140-cd494980-c0fa-11e9-9be8-ac7ba8862ab2.png
+<p align="center"><img width=70% src=https://user-images.githubusercontent.com/44467789/63209140-cd494980-c0fa-11e9-9be8-ac7ba8862ab2.png
 		       
 <br>
 
-<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209147-dfc38300-c0fa-11e9-8a11-1efc695cd2fd.png>
+<p align="center"><img width=70% src=https://user-images.githubusercontent.com/44467789/63209147-dfc38300-c0fa-11e9-8a11-1efc695cd2fd.png>
 
 <br>
 
@@ -284,7 +284,7 @@ In the BoxCox.Lambda test we analyzed that few variables required re-test for no
 
 <br>
 
-<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209166-2dd88680-c0fb-11e9-92fb-161b9b83584b.png>
+<p align="center"><img width=73% src=https://user-images.githubusercontent.com/44467789/63209166-2dd88680-c0fb-11e9-92fb-161b9b83584b.png>
 	
 After cleaning and normalizing original data set. New file has been saved as mydata.csv.
 ```
