@@ -61,6 +61,7 @@ Apply supervised machine learning techniques on MyBank personal loan campaign da
 - Check performance measurement of Neural Network and Apply model on unseen testing data set.
 - Compare all three techniques results and make conclusion.
 
+<br>
 
 ### Setting Up R Studio and Data Variables
 
@@ -227,6 +228,80 @@ Based on variables summary table most we recommend removing,
 > 
 > loan = loan[, -c(1,15,27)]
 ```
+
+<br>
+
+### Descriptive Statistics and Data Preparation 
+
+Under descriptive statistics we’ll start with Histogram and try to find out whether the variable is normal, right skewed or left skewed. 
+```
+R Studio codes for Histogram are attached in annexure A. 
+	> library(ggplot2)
+```
+
+<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209117-8bb89e80-c0fa-11e9-949c-d6f32018edd1.png>
+		       
+<br>
+
+<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209127-9f640500-c0fa-11e9-8240-8d254134e292.png>
+		       
+<br>
+
+<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209135-bc003d00-c0fa-11e9-8826-abba2975fe16.png>
+
+<br>
+
+<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209140-cd494980-c0fa-11e9-9be8-ac7ba8862ab2.png
+		       
+<br>
+
+<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209147-dfc38300-c0fa-11e9-8a11-1efc695cd2fd.png>
+
+<br>
+
+Now, as presented in Variables Summary Table we have also checked whether the variable has any significant impact on TARGET variable or not. However, we found that AGE, ACC_OP_DATE, FLG_HAS_NOMINEE, FLG_HAS_OLD_LOAN and random variables do not significantly represent TARGET variable. Hence, we remove the variables from the data set.  
+
+```
+## Remove Variables which are NOT Significant to TARGER Variable
+> 
+> loan = loan [, -c(2,10,35,36,37)]
+> 
+> dim(loan)
+
+[1] 20000    32
+```
+Here, we have also removed ACC_OP_DATE, which is reflection of LEN_OF_RLTN_IN_MNTH. 
+
+Now, as we see in Variables Summary Table, we applied BoxCox.Lambda test to normalize the skewed variables. 
+```
+## Normalize Variable based on skewness
+> 
+> library(moments)
+> library(forecast)
+```
+
+In the BoxCox.Lambda test we analyzed that few variables required re-test for normalization. 
+
+<br>
+
+<p align="center"><img width=68% src=https://user-images.githubusercontent.com/44467789/63209166-2dd88680-c0fb-11e9-92fb-161b9b83584b.png>
+	
+After cleaning and normalizing original data set. New file has been saved as mydata.csv.
+```
+## Save file as mydata.csv for CART, Random Forest and Neural Networks ML Modeling.
+> 
+> setwd("C:/Users/server/Desktop/Machine R")
+
+> write.csv(loan, 'mydata.csv')
+```
+
+Hence, based on new file mydata.csv we’ll build CART, Random Forest and Neural Networks techniques to build models to predict the response rate of potential bank customers who requires personal loan.
+
+<br>
+
+### CART  Machine Learning Technique
+
+<br>
 
 ### Acknowledge
 
