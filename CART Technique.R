@@ -161,7 +161,7 @@ dim(mydata.d)
 
 Error = (1633+1577)/14011
 Error
-
+# [1] 0.1168
 
 ## Apply Built model to Testing sample data set - mydata.t
 
