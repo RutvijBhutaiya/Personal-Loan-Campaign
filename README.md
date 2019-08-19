@@ -301,6 +301,113 @@ Hence, based on new file mydata.csv we’ll build CART, Random Forest and Neural
 
 ### CART  Machine Learning Technique
 
+To create CART model on mybank personal loan campaign data set, we are using mydata.csv file. 
+In mydata.csv data set, first we’ll convert FLG_HAS_CC and FLG_HAS_ANY_CHGS to factor from integer structure. 
+
+```
+## Convert into Factor class ##
+
+mydata$TARGET = as.factor(mydata$TARGET)
+mydata$FLG_HAS_CC = as.factor(mydata$FLG_HAS_CC)
+mydata$FLG_HAS_ANY_CHGS = as.factor(mydata$FLG_HAS_ANY_CHGS)
+
+> class(FLG_HAS_CC)
+[1] "factor"
+
+> class(FLG_HAS_ANY_CHGS)
+[1] "factor"
+```
+Now, to create development (training) and testing data set we have split mydaya.csv data file. Where mydata.d represents development dataset with 70% and mydata.t represents testing dataset with 30%. Here both the datasets contains random observations from original dataset, mydata.csv. 
+
+Where, mydata.d represents 14054 observation for development purpose and mydata.t represents 5946 observation for testing dataset. 
+Where, 33rd variable is random variable which we created for split. However, random variable does not have any significant impact on model. 
+
+#### Build CART Model 
+
+CART represents Classification and Regression Tree model, and for this model we are using R studio inbuilt library called ‘rpart’.  
+Before we begin, we have set control parameters for rpart() function.  
+
+```
+## Set Control Parameters 
+
+r.ctrl = rpart.control(minsplit = 100, minbucket = 10, cp = 0, xval = 10)
+
+## Build Classification Tree usinf rpart function
+
+mydata.tree = rpart(formula = TARGET ~ ., data = mydata.d, method = "class", control = r.ctrl)
+mydata.tree
+
+fancyRpartPlot(mydata.tree)
+
+```
+
+Parameters from rpart.control() function playa important role in tuning the CART model. 
+
+Higher the minsplit and minbucket would not allow tree to grow fullest. However, very low minbucket does not mean higher accuracy, because very low minbucket, for e.g. minbucket = 2 means we are taking only two observations and prediction the TARGET variable. Hence, accuracy would be higher but only two observations are not sufficient to predict whether customer would respond or not respond. 
+Here, in rpart.control() function we are taking minbucket at 15, and minsplit at 80.  
+
+Mydata.tree would not be visible tree to analyze, so we have pruned the tree based on CP parameter.
+
+Now, based on CP table we’ll decide the CP value to prune the tree.
+As CP table represents, 13th node represents minimum classification error (xerror) which is 0.96567. Hence, we suggest taking CP value as 0.0028 for pruning the CART tree. 
+
+Pruned classification tree represents splits at each node based on GINI. 
+As we can see in the Pruned Classification Tree, at parent node, NO_OF_L_TRXNS <5.5 represents the highest GINI gain and hence rpart() chooses particular variable. 
+Also, at NO_OF_L_TRXNS <5.5 node class (0) is dominated with 87% and class (1) responded class is at 13%.
+
+Now, based on mydata.tree.prun, we have predicted the class and probabilities of the class, here class represents 0 and 1, where 0 means Non-Responder and 1 mean Responder. 
+
+```
+## For Prediction class do Scoring 
+
+mydata.d$predict.class <- predict(mydata.tree.prun, mydata.d, type = "class")
+
+mydata.d$predict.score <- predict(mydata.tree.prun, mydata.d, type = "prob")
+```
+Based on the predict() function mydata.tree.prun model be able to show TARGET variable class(0) and class(1, here as table presents predicted class is 0 with 90% probability and at the same observation class(1) with 10% probability. 
+
+Now, to check the CART model performance, first, we are measuring Rank Order method, where we check KS parameter and second we are using confusion matrix. 
+To create ran order we have created deciles, and rank order table. 
+
+<p align="center"><img width=83% src=https://user-images.githubusercontent.com/44467789/63266974-b9dedf80-c2ae-11e9-9bfb-4dedfd04e3f0.png>
+
+Rank ordering technique plays significant role to check the performance of mydata.tree.prun model.
+In rank ordering table, first we creates deciles, ranging between 1 to 10. Here, cnt_resp and cnt_non_resp represents responded and non-responded customers in particular deciles. In the table variables’ are starting with ‘cum’ means cumulative response for particular deciles. 
+
+In the table, KS is only 0.19 which means model is slightly under fitted. However, cumulative response is 57% for first two deciles. 
+Second method we have used to check the performance of the model is confusion matrix. 
+
+In confusion matrix out of 14054 observations, False Positive (Type 1) and False Negative (Type 2) error are 1547 and 95 respectively, with 11.6 % classification error. 
+
+```
+## Confusion Martix Error Calculation
+
+with(mydata.d, table(TARGET, predict.class))
+
+dim(mydata.d)
+
+Error = (1633+1577)/14011
+Error
+# [1] 0.1168
+
+```
+Now, have applied CART model to unseen data to mydaya.t data set to check how model performs on the unseen data set. 
+
+<p align="center"><img width=47% src=https://user-images.githubusercontent.com/44467789/63267587-08d94480-c2b0-11e9-924c-1606d990227a.png>
+	
+To Overcome the under fitness issues of CART model we’ll perform Random Forest technique and check the model fitness.
+
+<br>
+
+### Random Forest Machine Learning Technique
+
+To create CART model on mybank personal loan campaign data set, we are using mydata.csv file. 
+
+Now, to create development (training) and testing data set we have split mydaya.csv data file. Where mydata.d represents development dataset with 70% and mydata.t represents testing dataset with 30%. Here both the datasets contains random observations from original dataset, mydata.csv. 
+
+#### Build Random Forest Model
+
+
 <br>
 
 ### Acknowledge
