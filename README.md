@@ -399,7 +399,7 @@ To Overcome the under fitness issues of CART model we’ll perform Random Forest
 
 <br>
 
-### Random Forest Machine Learning Technique
+### Random Forest Machine Learning Technique - [Link](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/Random%20Forest%20Technique.R)
 
 To create CART model on mybank personal loan campaign data set, we are using mydata.csv file. 
 
