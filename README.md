@@ -407,6 +407,84 @@ Now, to create development (training) and testing data set we have split mydaya.
 
 #### Build Random Forest Model
 
+Random Forest technique is based on ‘Ensemble technique’, where you create multiple trees like forest and the prediction is based on Mode of classification tree, and voting principle will select the class based on Mode. 
+
+Where in CART model we have seen over fitting, RF overcomes overfitting challenge due to n number of trees, where in CART there was only 1 classification tree. 
+
+Random forest model user inbuilt library called randomForest in R studio. 
+Parameters in randomforest() function are ntree and ntry; where ntree represents number of classification tree, in RN we are taking 501 such classification trees and based on each 501 trees class, RF prediction would be done based on Mode of each classification tree.
+
+In the function, mtry, represents number of variables to be takes based on boot strap aggregation. And for our study we choose mtry as 15. Mtry is also known as m, which is subset of M (total variables).   
+
+Individual tree strength depends on mtry. Higher the mtry higher the individual tree strength and vice-versa. 
+```
+## Create Random Forest Model
+
+library(randomForest)
+
+set.seed(123)
+
+mydata.rf <- randomForest(as.factor(TARGET) ~ ., data = mydata.d, 
+                      ntree=101, mtry = 10, nodesize = 50,
+                      importance=TRUE)
+```
+OOB (Out f Bag) error represents the number f tree. As we can see from the mydata.rf$err.rate around 20 classification trees are enough to build model. 
+
+Hence, 20 trees - ‘ntree’ parameter in randomforest() function  would be sufficient
+Based on the following Error plot, 
+
+<p align="center"><img width=70% src= https://user-images.githubusercontent.com/44467789/63511575-2cde9500-c4ff-11e9-986c-63da96d7e0ad.png>
+	
+Based on 20 trees, we have tuned random forest model parameters as shown following, and run the randomforest() function. 
+Hence, mtryStart is 15, and for safer side we took ntreeTry as 15, however, best ntreeTry is around 8. 
+
+Here stepFActor we took as 1.2, means in each iteration model will multiply mtreeTry with stepFactor to calculate OOB. Now, when there is improvement of 0.0001 model will switch to higher (m), again OOB be calculated and repeats till significant improvement. 
+```
+## Based on Error Rate choosing ntree = 15 and Tuning Random Forest Model
+
+rf.tune <- tuneRF(x = mydata.d, 
+              y=as.factor(mydata.d$TARGET),
+              mtryStart = 8, 
+              ntreeTry = 61, 
+              stepFactor = 1.2, 
+              improve = 0.0001, 
+              trace=TRUE, 
+              plot = TRUE,
+              doBest = TRUE,
+              nodesize = 200, 
+              importance=TRUE
+)
+
+mydata.rf <- randomForest(as.factor(TARGET) ~ ., data = mydata.d, 
+                          ntree=15, mtry = 15, nodesize = 200,
+                          importance=TRUE)
+
+print(mydata.rf)
+```
+
+Error rate is improved slightly 12.29% and class.error for 1 has gone down from 0.989 to 0.976, hence model is improved and fit for 20 trees. 
+
+Now, based on mydata.tree.prun, we have predicted the class and probabilities of the class, here class represents 0 and 1, where 0 means Non-Responder and 1 mean Responder.
+
+Now, to check the Random Forest model performance, first, we are measuring Rank Order method, where we check KS parameter and second we are using confusion matrix. 
+To create ran order we have created deciles, and rank order table. 
+
+Based on rank order table in first two deciles response class covers around 70% with 0.52 KS, which is best fit to train dataset.
+However, our aim is not to make model best fit to development dataset, but to testing dataset.
+
+Second method we have used to check the performance of the model is confusion matrix. 
+Classification error is 0.122, and hence on model accuracy is 87.8%, which we suggest should be more than 90%. 
+
+As we can see from the comparison table that, performance % difference between training and resting is 15%. 
+
+<p align="center"><img width=48% src=https://user-images.githubusercontent.com/44467789/63511852-ed647880-c4ff-11e9-84ba-1fd33e8ee1dc.png>
+	
+<br>
+
+<br>
+	
+### Neural Network Machine Learning Technique
+
 
 <br>
 
