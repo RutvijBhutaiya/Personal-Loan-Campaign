@@ -299,11 +299,12 @@ Hence, based on new file mydata.csv we’ll build CART, Random Forest and Neural
 
 <br>
 
-### CART  Machine Learning Technique - [Link](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/CART%20Technique.R)
+### CART  Machine Learning Technique
 
 To create CART model on mybank personal loan campaign data set, we are using mydata.csv file. 
 In mydata.csv data set, first we’ll convert FLG_HAS_CC and FLG_HAS_ANY_CHGS to factor from integer structure. 
 
+[R Project Link](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/CART%20Technique.R)
 ```
 ## Convert into Factor class ##
 
