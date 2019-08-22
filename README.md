@@ -299,7 +299,7 @@ Hence, based on new file mydata.csv we’ll build CART, Random Forest and Neural
 
 <br>
 
-### CART  Machine Learning Technique
+### CART Machine Learning Technique
 
 To create CART model on mybank personal loan campaign data set, we are using mydata.csv file. 
 In mydata.csv data set, first we’ll convert FLG_HAS_CC and FLG_HAS_ANY_CHGS to factor from integer structure. 
@@ -400,7 +400,7 @@ To Overcome the under fitness issues of CART model we’ll perform Random Forest
 
 <br>
 
-### Random Forest Machine Learning Technique - [Link](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/Random%20Forest%20Technique.R)
+### Random Forest Machine Learning Technique
 
 To create CART model on mybank personal loan campaign data set, we are using mydata.csv file. 
 
@@ -418,6 +418,8 @@ Parameters in randomforest() function are ntree and ntry; where ntree represents
 In the function, mtry, represents number of variables to be takes based on boot strap aggregation. And for our study we choose mtry as 15. Mtry is also known as m, which is subset of M (total variables).   
 
 Individual tree strength depends on mtry. Higher the mtry higher the individual tree strength and vice-versa. 
+
+[R Project Link](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/Random%20Forest%20Technique.R)
 ```
 ## Create Random Forest Model
 
