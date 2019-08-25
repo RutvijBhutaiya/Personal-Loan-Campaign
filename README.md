@@ -587,12 +587,26 @@ Based on mydata.nn ANN model, we used compute() function to predict class(0) and
 
 As we see the comparison table % difference between training and testing date set is more than 10%, hence ANN model is not fit for unseen data. 
 
-<p align="center"><img width=48% src=https://user-images.githubusercontent.com/44467789/63648751-d321d900-c751-11e9-8e3d-bbe5620339dc.png)
+<p align="center"><img width=45% src=https://user-images.githubusercontent.com/44467789/63648751-d321d900-c751-11e9-8e3d-bbe5620339dc.png>
 
+Before final conclusion we have compared three techniques and results base on personal loan campaign dataset. 
 
+### Machine Learnign Models Comparison
 
+Note: Due to randomness in selection of development dataset mydata.d and testing dataset mydata.t, numbers of observations are different in all the three techniques. Hence we prefer not to use ensemble method to find best fit. But, we used scaling based on three criteria.
+Model comparison based in three criteria, 1) Stability, 2) Training dataset performance and 3) Testing dataset performance. 
 
+Stability is the most important criteria for model prediction and stability weightage is 50% in comparison table. After that model can give smooth performance of training dataset but priority is to work and give results on unseen dataset, testing dataset. So, we give 30% weightage to testing dataset performance and rest 20% to training dataset performance. 
 
+Stability means % difference in training (development) and testing model results. Higher the differences lower the stability and vice-versa. 
+
+<p align="center"><img width=45% src=https://user-images.githubusercontent.com/44467789/63648798-69ee9580-c752-11e9-8437-30882a2ec943.png>
+	
+As we see in the comparison table, Random Forest is winner. However, supervised learning technique depends on model to model. For personal loan dataset we saw that Random Forest technique is best fit to do prediction for responded and non-responded class customers. 
+
+<br>
+
+### Conclusion
 
 <br>
 
