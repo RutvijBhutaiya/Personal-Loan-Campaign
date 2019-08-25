@@ -488,6 +488,111 @@ As we can see from the comparison table that, performance % difference between t
 	
 ### Neural Network Machine Learning Technique
 
+To create Random Forest model on mybank personal loan campaign data set, we are using mydata.csv file. 
+
+Neural Network can’t perform on categorical variables. So, we are converting categorical variables to numerical variables. 
+
+Hence, GENDER, OCCUPATION, AGE_BKT, ACC_TYPE, FLG_HAS_CC, FLG_HAS_ANY_CHGS categorical variable would be translated into Dummy variables. 
+
+```
+## Convert Categorical variables to Dummy variables
+
+G.matrix <- model.matrix(~ GENDER - 1, data = mydata)
+mydata <- data.frame(mydata, G.matrix)
+```
+
+Now, to create development (training) and testing data set we have split mydaya.csv data file. Where mydata.d represents development dataset with 70% and mydata.t represents testing dataset with 30%. Here both the datasets contains random observations from original dataset, mydata.csv.
+
+#### Build Neural Network Model 
+
+Artificial Neural Network (ANN) is inspired by brain, biological neural network. For ANN we uses inbuilt library from R Studio, called ‘neuralnet’. 
+
+ANN is sensitive to weighted in variables, and to overcome overfittness in ANN model have scaled categorical variables, GENDER, OCCUPATION, AGE_BKT, ACC_TYPE, FLG_HAS_CC, FLG_HAS_ANY_CHGS. 
+
+Here, we are temporary removing TARGET variable. 
+
+```
+## For Scaling We are creating new variable scale.temp [where we remove TARGER Variable] & Categorical variables]
+
+scale.temp = mydata.d[, -c(1,2,4,5,8,17,23)]
+
+View(scale.temp)
+
+mydata.d.scale = scale(scale.temp)
+View(mydata.d.scale)
+
+dim(mydata.d.scale)
+# [1] 14004    45
+
+mydata.d.scaled = cbind(mydata.d[1], mydata.d.scale)
+attach(mydata.d.scaled)
+```
+
+
+After scaling the dataset, we are using neuralnet() function  to build ANN, where we have chosen 5 neurons (hidden layers) to perform the task.
+
+To build ANN model on personal loan campaign dataset, we have used Sum of Squared as ‘sse’ type for cost function, with threshold reach till 0.1. Means, model will perform iteration based on sum of squared cost function till error falls below 0.1. In the model, Linear.output is FALSE, means by default Sigmoid activation is applied in the [ANN model](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/Neural%20Net%20Technique.R)
+
+```
+## PLot Neural Network
+
+plot(mydata.nn)
+```
+
+As we can analyze the ANN plot there are 5 neuron, 46 input biases, and one output bias TARGET. From the plot, synaptic weights are not clearly visible, but for BALANCE we can see synaptic weight is -3.1447. 
+Similarly, blue points with values are transmitting variables values from one neuron to other neuron e.g. 8.6699 and -0.29541
+
+
+<p align="center"><img width=70% src=https://user-images.githubusercontent.com/44467789/63648670-bb962080-c750-11e9-8f91-d51e406f853b.png>
+	
+Now, based on the mydata.nn model we will perform performance measurements. 
+Now, after building model we’ll check % distribution of probabilities across range from 0 to 100 using quantile () function. 
+As we see, at each percentile, probability keeps changing and hence model is able to separate class (0) as non- responder and class (1) as responder.  
+
+```
+## Check the % distribution of probability by using Quantile function
+
+quantile(mydata.nn$net.result[[1]], c(0,1,5,10,25,50,75,90,95,99,100)/100)
+
+# 0%              1%              5% 
+# 0.0006426217346 0.0006532012302 0.0036834693699 
+# 10%             25%             50% 
+# 0.0036943131520 0.0176061117260 0.0298850307133 
+# 75%             90%             95% 
+# 0.1285330465953 0.3615562025308 0.4266808152114 
+# 99%            100% 
+# 0.7949657404865 0.8106565866976 
+
+```
+Also, we have performed, confusion matrix and Rank ordering based on deciles. 
+Confusion matrix gives the classification error at 11.23%, less error gives higher accuracy model. 
+
+Rank order is considered one of the best matrix when it comes about model performance measurement.  Base of deciles, we can see the top two deciles covert more than 55% response with 0.45 KS value. Best range for KS factor is 0.45 to 0.55; however our KS value is close to the range. 
+
+[Link R Code](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/Neural%20Net%20Technique.R)
+
+Now, based on mydata.nn model we will check the model fitness on testing dataset. If model performs correct on testing dataset we can consider model is fit and can be used for prediction of class. 
+
+In beginning with test dataset we need to do scaling for mydata.t dataset.  
+
+```
+# For TESTING DATA SET
+
+## For TESTING DATA mydata.t Scaling We are creating new variable scale.temp1 [where we remove TARGER Variable] & Categorical variables]
+
+scale.temp1 = mydata.t[, -c(1,2,4,5,8,17,23)]
+```
+
+Based on mydata.nn ANN model, we used compute() function to predict class(0) and class(1) on testing dataset. Because predict() function is not suitable for NN models. 
+
+As we see the comparison table % difference between training and testing date set is more than 10%, hence ANN model is not fit for unseen data. 
+
+<p align="center"><img width=48% src=https://user-images.githubusercontent.com/44467789/63648751-d321d900-c751-11e9-8e3d-bbe5620339dc.png)
+
+
+
+
+
 
 <br>
 
