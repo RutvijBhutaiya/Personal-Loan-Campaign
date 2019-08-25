@@ -587,7 +587,7 @@ Based on mydata.nn ANN model, we used compute() function to predict class(0) and
 
 As we see the comparison table % difference between training and testing date set is more than 10%, hence ANN model is not fit for unseen data. 
 
-<p align="center"><img width=45% src=https://user-images.githubusercontent.com/44467789/63648751-d321d900-c751-11e9-8e3d-bbe5620339dc.png>
+<p align="center"><img width=42% src=https://user-images.githubusercontent.com/44467789/63648751-d321d900-c751-11e9-8e3d-bbe5620339dc.png>
 
 Before final conclusion we have compared three techniques and results base on personal loan campaign dataset. 
 
