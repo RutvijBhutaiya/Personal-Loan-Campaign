@@ -619,3 +619,7 @@ This data analysis model would help bank for better engagement with existing cus
 ### Acknowledge
 
 Great Lakes Institute - BACP Project 
+
+### LICENSE
+
+This Project/Repository is Licensed under [MIT license](https://github.com/RutvijBhutaiya/Personal-Loan-Campaign/blob/master/LICENSE).
