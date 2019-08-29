@@ -608,6 +608,14 @@ As we see in the comparison table, Random Forest is winner. However, supervised 
 
 ### Conclusion
 
+Base on the supervised machine learning techniques – CART, Random Forest, and Neural Networks, we can conclude that out of three machine learning techniques, Random Forest is best fit for personal loan campaign dataset.
+
+Random Forest predicted responder and non-responded class customers with around 88% accuracy. Based on stability, random forest falls behind CART model technique. Since, overall scoring indicated Random Forest is best fit for the dataset.
+
+Hence, we recommend Mybank to perform Random Forest model on customer dataset to identify potential buyers of personal loan.
+
+This data analysis model would help bank for better engagement with existing customers and would be able forecast loan revenue based on the same. This data analysis model will also help individual bank branch and sales man to target right customer for personal loan in future.
+
 <br>
 
 ### Acknowledge
